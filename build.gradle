@@ -1,0 +1,83 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.morpheus.avatarapi'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '2.5.2'
+
+
+	//log4j
+	implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
+	implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.1'
+	implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.17.1'
+
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	//mariadb
+	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.1'
+	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.1'
+
+
+	//lombok
+	compileOnly 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+	testCompileOnly 'org.projectlombok:lombok:1.18.20'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+
+	//common-lang3
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+
+	//gson
+	implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.7'
+
+	//jackson
+	implementation group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.13'
+	implementation group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.13'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.12.4'
+
+	//beanUtils
+	implementation group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+
+	//json
+	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+	implementation 'org.json:json:20171018'
+	//common-io
+	implementation 'commons-io:commons-io:2.6'
+	//bouncycastle
+	implementation group: 'org.bouncycastle', name: 'bcprov-jdk16', version: '1.45'
+
+
+
+}
+
+test {
+	useJUnitPlatform()
+}
+
+//ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
+//
+//sourceSets {
+//	main {
+//		resources {
+//			srcDirs "src/main/resources", "src/main/resources-env/${profile}"
+//		}
+//	}
+//}
+

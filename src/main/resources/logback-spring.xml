@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %m{nolookups}%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="debug">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+
+	<springProfile name="real">
+		<appender name="avatar_real_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<Append>true</Append>
+			<encoder>
+				<charset>UTF-8</charset>
+				<pattern>%msg%n</pattern>
+			</encoder>
+			<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+				<fileNamePattern>/home/avatar/apache-tomcat-8.5.59/logs/avatarConnector.%d{yyyy-MM-dd}.log</fileNamePattern>
+			</rollingPolicy>
+		</appender>
+		<logger name="com.morpheus.avatarapi.utils.ResCode" level="info" additivity="false">
+			<appender-ref ref="avatar_real_log"/>
+		</logger>
+	</springProfile>
+
+
+	<springProfile name="dev">
+		<appender name="avatar_real_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<Append>true</Append>
+			<encoder>
+				<charset>UTF-8</charset>
+				<pattern>%msg%n</pattern>
+			</encoder>
+			<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+				<fileNamePattern>/home/avatar/apache-tomcat-8.5.59/logs/avatarConnector.%d{yyyy-MM-dd}.log</fileNamePattern>
+			</rollingPolicy>
+		</appender>
+		<logger name="org.springframework" level="info" additivity="false">
+			<appender-ref ref="avatar_real_log"/>
+		</logger>
+	</springProfile>
+
+</configuration>
